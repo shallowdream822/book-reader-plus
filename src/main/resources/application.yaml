@@ -1,0 +1,55 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://43.138.106.8:3306/book_reader?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 123456
+  redis:
+    host: 43.138.106.8
+    #    password: 123456
+    port: 6379
+    lettuce:
+      pool:
+        max-active: 10
+        max-idle: 10
+        min-idle: 1
+        time-between-eviction-runs: 10s
+  jackson:
+    default-property-inclusion: non_null
+  swagger:
+    title: Example API
+    description: Example API documentation
+    version: 1.0
+    contact:
+      name: John Doe
+      email: john.doe@example.com
+    license:
+      name: Apache License 2.0
+      url: https://www.apache.org/licenses/LICENSE-2.0.html
+    base-package: com.tyf.bookreader.controller
+  rabbitmq:
+    host: 43.138.106.8
+    port: 5672
+    username: root
+    password: 123456
+    publisher-confirms: true #如果对异步消息需要回调必须设置为true
+server:
+  port: 8080
+logging:
+  level:
+    com.tyf: debug
+mybatis-plus:
+  global-config:
+    banner: false
+    enable-sql-runner: true
+    db-config:
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+br:
+  # 跨域配置
+  cors:
+    # 允许跨域的域名
+    allow-origins:
+      - http://localhost:1024
+      - http://localhost:8080
