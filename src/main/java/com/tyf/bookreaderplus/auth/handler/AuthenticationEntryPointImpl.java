@@ -30,7 +30,9 @@ public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint {
             response.getWriter().write(JSON.toJSONString(Result.fail(StatusCodeEnum.LOGIN_FAIL)));
         } else if (authException instanceof LockedException) {
             response.getWriter().write(JSON.toJSONString(Result.fail(StatusCodeEnum.USER_LOCKED)));
-        } else {
+        } else if (authException instanceof AuthenticationException){
+            response.getWriter().write(JSON.toJSONString(Result.fail(StatusCodeEnum.NO_LOGIN)));
+        }else {
             response.getWriter().write(JSON.toJSONString(Result.fail(525, authException.getMessage())));
         }
 

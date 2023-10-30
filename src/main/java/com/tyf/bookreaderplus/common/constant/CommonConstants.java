@@ -8,7 +8,10 @@ package com.tyf.bookreaderplus.common.constant;
 
 public class CommonConstants {
 
-
+    /**
+     * 不匹配时不放行
+     */
+    public static final String DENY_ACCESS = "deny_access";
 
     /**
      * 用户登录相关

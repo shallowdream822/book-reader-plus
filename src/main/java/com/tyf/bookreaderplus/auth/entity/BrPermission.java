@@ -51,5 +51,9 @@ public class BrPermission implements Serializable{
 
     @TableField(value = "update_time" , fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
+
+    /**是否需要认证 0-否；1-是*/
+    @TableField(value = "need_authentication")
+    private Integer needAuthentication;
 }
 
