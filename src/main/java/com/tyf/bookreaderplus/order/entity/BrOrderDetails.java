@@ -27,8 +27,8 @@ public class BrOrderDetails implements Serializable{
     private Long id;
 
 
-    @TableField(value = "order_id")
-    private Long orderId;
+    @TableField(value = "order_num")
+    private Long orderNum;
 
     /**本书id*/
     @TableField(value = "book_id")

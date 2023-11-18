@@ -52,6 +52,6 @@ public class BrAuthor implements Serializable{
     /**更新时间*/
 
     @TableField(value = "update_time" , fill = FieldFill.INSERT_UPDATE)
-    private Date updateTime;
+    private LocalDateTime updateTime;
 }
 

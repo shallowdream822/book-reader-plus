@@ -1,8 +1,9 @@
 package com.tyf.bookreaderplus.order.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.tyf.bookreader.domain.BrOrderDetails;
-import com.tyf.bookreader.dto.OrderDto;
+
+import com.tyf.bookreaderplus.order.dto.OrderDto;
+import com.tyf.bookreaderplus.order.entity.BrOrderDetails;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -15,6 +16,6 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface BrOrderDetailsMapper extends BaseMapper<BrOrderDetails> {
 
-    OrderDto selectOrderDtoByOrderId(@Param("orderId") Long orderId);
+    OrderDto selectOrderDtoByOrderNum(@Param("orderNum") Long orderId);
 }
 

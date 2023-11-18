@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.tyf.bookreader.mapper.BrOrderDetailsMapper">
-    <resultMap id="orderDto" type="com.tyf.bookreader.dto.OrderDto">
-        <result property="id" column="id"/>
+<mapper namespace="com.tyf.bookreaderplus.order.dao.BrOrderDetailsMapper">
+    <resultMap id="orderDto" type="com.tyf.bookreaderplus.order.dto.OrderDto">
         <result property="orderNum" column="order_num"/>
         <result property="orderPrice" column="order_price"/>
         <result property="status" column="status"/>
         <result property="createTime" column="create_time"/>
         <result property="updateTime" column="update_time"/>
         <result property="payTime" column="pay_time"/>
-        <collection property="orderDetailsList" ofType="com.tyf.bookreader.dto.OrderDetailsDto">
+        <collection property="orderDetailsList" ofType="com.tyf.bookreaderplus.order.dto.OrderDetailsDto">
             <result property="bookId" column="book_id"/>
             <result property="bookName" column="book_name"/>
             <result property="bookPrice" column="book_price"/>
         </collection>
     </resultMap>
-    <select id="selectOrderDtoByOrderId" resultMap="orderDto">
+    <select id="selectOrderDtoByOrderNum" resultMap="orderDto">
         select bo.id, bo.order_num, bo.order_price, bo.status, bo.create_time, bo.update_time,bo.pay_time,
             bod.book_id,bod.book_name, bod.book_price
         from br_order bo
         join br_order_details bod
-        on bod.order_id = #{orderId}
-        where bo.id = #{orderId} and bo.deleted = 0
+        on bod.order_num = #{orderNum}
+        where bo.order_num = #{orderNum} and bo.deleted = 0
     </select>
 </mapper>

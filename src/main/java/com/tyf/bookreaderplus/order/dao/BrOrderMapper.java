@@ -1,7 +1,8 @@
 package com.tyf.bookreaderplus.order.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.tyf.bookreader.domain.BrOrder;
+
+import com.tyf.bookreaderplus.order.entity.BrOrder;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

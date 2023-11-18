@@ -1,12 +1,11 @@
-package com.tyf.bookreader.service;
+package com.tyf.bookreaderplus.order.service;
 
-import com.tyf.bookreader.dto.OrderDto;
-import com.tyf.bookreader.dto.PageRespDto;
-import com.tyf.bookreader.vo.OrderVo;
-import com.tyf.bookreader.component.Result;
-import com.tyf.bookreader.vo.PageVo;
 
-import java.util.List;
+import com.tyf.bookreaderplus.common.component.PageVo;
+import com.tyf.bookreaderplus.common.component.Result;
+import com.tyf.bookreaderplus.common.dto.PageRespDto;
+import com.tyf.bookreaderplus.order.dto.OrderDto;
+import com.tyf.bookreaderplus.order.vo.OrderVo;
 
 /**
  * @Description 订单业务
@@ -16,15 +15,15 @@ import java.util.List;
 
 public interface OrderService {
 
-    Result createOrder(OrderVo orderVo);
+    void createOrder(OrderVo orderVo);
 
-    Result payOrder(Long orderId);
+    void payOrder(Long orderId);
 
     Result<OrderDto> selectOrderDetails(Long orderId);
 
-    Result cancelOrder(Long orderId);
+    void cancelOrder(Long orderId);
 
     Result<PageRespDto<OrderDto>> getOrders(PageVo pageVo);
 
-    Result deleteOrder(Long orderId);
+    void deleteOrder(Long orderId);
 }

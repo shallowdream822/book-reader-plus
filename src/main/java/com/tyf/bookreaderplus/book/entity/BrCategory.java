@@ -40,7 +40,7 @@ public class BrCategory implements Serializable{
     /**更新时间*/
 
     @TableField(value = "update_time" , fill = FieldFill.INSERT_UPDATE)
-    private Date updateTime;
+    private LocalDateTime updateTime;
 
     /**逻辑删除 0 -正常，1-删除*/
                 @TableLogic

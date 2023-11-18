@@ -1,4 +1,4 @@
-package com.tyf.bookreader.dto;
+package com.tyf.bookreaderplus.order.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,9 +19,7 @@ import java.util.List;
 @Builder
 public class OrderDto {
 
-    private Long id;
-
-    private String orderNum;
+    private Long orderNum;
 
     private Double orderPrice;
 

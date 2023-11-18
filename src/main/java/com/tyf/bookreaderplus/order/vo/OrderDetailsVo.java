@@ -1,4 +1,4 @@
-package com.tyf.bookreader.vo;
+package com.tyf.bookreaderplus.order.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

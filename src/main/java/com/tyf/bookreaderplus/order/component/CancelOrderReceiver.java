@@ -1,10 +1,10 @@
-package com.tyf.bookreader.component;
+package com.tyf.bookreaderplus.order.component;
 
-import com.tyf.bookreader.domain.BrOrder;
-import com.tyf.bookreader.mapper.BrOrderMapper;
-import com.tyf.bookreader.service.OrderService;
+
+import com.tyf.bookreaderplus.order.dao.BrOrderMapper;
+import com.tyf.bookreaderplus.order.entity.BrOrder;
+import com.tyf.bookreaderplus.order.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

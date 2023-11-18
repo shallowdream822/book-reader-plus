@@ -9,7 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * (BrPermission)实体类
@@ -45,12 +45,12 @@ public class BrPermission implements Serializable{
     /**创建时间*/
 
     @TableField(value = "create_time" , fill = FieldFill.INSERT)
-    private Date createTime;
+    private LocalDateTime createTime;
 
     /**更新时间*/
 
     @TableField(value = "update_time" , fill = FieldFill.INSERT_UPDATE)
-    private Date updateTime;
+    private LocalDateTime updateTime;
 
     /**是否需要认证 0-否；1-是*/
     @TableField(value = "need_authentication")

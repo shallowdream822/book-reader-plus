@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -69,16 +70,16 @@ public class BrUser implements Serializable{
     /**最近登陆时间
 */
     @TableField(value = "last_login_time")
-    private Date lastLoginTime;
+    private LocalDateTime lastLoginTime;
 
     /**创建时间*/
 
     @TableField(value = "create_time" , fill = FieldFill.INSERT)
-    private Date createTime;
+    private LocalDateTime createTime;
 
     /**更新时间*/
 
     @TableField(value = "update_time" , fill = FieldFill.INSERT_UPDATE)
-    private Date updateTime;
+    private LocalDateTime updateTime;
 }
 

@@ -25,7 +25,7 @@ public class BrOrder implements Serializable{
 
     /**订单编号*/
     @TableField(value = "order_num")
-    private String orderNum;
+    private Long orderNum;
 
     /**用户id*/
     @TableField(value = "user_id")

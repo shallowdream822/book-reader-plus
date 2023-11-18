@@ -1,6 +1,6 @@
-package com.tyf.bookreader.component;
+package com.tyf.bookreaderplus.order.component;
 
-import com.tyf.bookreader.constant.QueueEnum;
+import com.tyf.bookreaderplus.common.constant.QueueEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
