@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tyf.bookreaderplus.promotion.dao.BrFlashPromotionMapper">
+
+    <select id="selectAllFromNowToTarget"
+            resultType="com.tyf.bookreaderplus.promotion.entity.BrFlashPromotion">
+        select * from br_flash_promotion where end_date >= #{now}
+                                           and start_date &lt;= #{end}
+    </select>
+    <select id="selectPromotionById" resultType="com.tyf.bookreaderplus.promotion.entity.BrFlashPromotion">
+        select * from br_flash_promotion where id = #{promotionId}
+    </select>
+</mapper>

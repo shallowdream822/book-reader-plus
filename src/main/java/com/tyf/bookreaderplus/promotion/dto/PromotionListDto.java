@@ -1,4 +1,4 @@
-package com.tyf.bookreaderplus.order.vo;
+package com.tyf.bookreaderplus.promotion.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,14 +10,12 @@ import java.util.List;
 /**
  * @Description TODO
  * @Author shallow
- * @Date 2023/5/2 21:03
+ * @Date 2023/11/22 16:05
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class OrderVo {
-
-    private Integer isSeckill = 0;
-    private List<OrderDetailsVo> orderDetailsVoList;
+public class PromotionListDto {
+    List<PromotionDto> promotionList;
 }

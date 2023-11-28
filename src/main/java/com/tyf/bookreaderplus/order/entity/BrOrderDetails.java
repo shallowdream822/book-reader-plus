@@ -23,7 +23,7 @@ import java.time.LocalDateTime;
 public class BrOrderDetails implements Serializable{
     private static final long serialVersionUID= -52998575529655487L;
 
-    @TableId(value = "id" , type = IdType.ASSIGN_ID)
+    @TableId(value = "id" , type = IdType.AUTO)
     private Long id;
 
 

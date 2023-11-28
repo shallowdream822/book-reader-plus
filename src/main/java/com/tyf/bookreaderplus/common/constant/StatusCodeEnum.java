@@ -47,6 +47,10 @@ public enum StatusCodeEnum {
 
     LOGIN_FAIL(52003,"用户名或密码错误" ),
 
+    SECKILL_FAIL(52010,"秒杀失败" ),
+
+    HAS_SECKILL(52011,"已经秒杀过" ),
+
     USER_LOCKED(52004,"用户被锁定" );
     /**
      * 状态码

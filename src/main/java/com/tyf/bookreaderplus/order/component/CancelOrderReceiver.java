@@ -29,11 +29,11 @@ public class CancelOrderReceiver {
     private BrOrderMapper orderMapper;
 
     @RabbitListener(queues = "book_reader.order.dead")
-    public void handleCancel(Long orderId){
-        log.debug("订单id是{}",orderId);
-        BrOrder order = orderMapper.selectById(orderId);
+    public void handleCancel(Long orderNum){
+        log.debug("订单Num是{}",orderNum);
+        BrOrder order = orderMapper.selectById(orderNum);
         if (Objects.nonNull(order) && order.getStatus() == 0){
-            orderService.cancelOrder(orderId);
+            orderService.cancelOrder(orderNum);
         }
     }
 

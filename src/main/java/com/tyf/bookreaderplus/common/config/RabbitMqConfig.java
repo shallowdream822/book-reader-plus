@@ -35,6 +35,14 @@ public class RabbitMqConfig {
                 .build();
     }
 
+    @Bean
+    DirectExchange seckillExchange() {
+        return ExchangeBuilder
+                .directExchange(QueueEnum.QUEUE_SECKILL.getExchange())
+                .durable(true)
+                .build();
+    }
+
 
     /**
      * 死信队列
@@ -55,6 +63,11 @@ public class RabbitMqConfig {
                 .withArgument("x-dead-letter-exchange",QueueEnum.QUEUE_ORDER_DEAD.getExchange())//转发的交换机
                 .withArgument("x-dead-letter-routing-key",QueueEnum.QUEUE_ORDER_DEAD.getRouteKey())//转发的路由key
                 .build();
+    }
+
+    @Bean
+    public Queue seckillQueue(){
+        return new Queue(QueueEnum.QUEUE_SECKILL.getName());
     }
 
     /**
@@ -78,5 +91,13 @@ public class RabbitMqConfig {
                 .bind(delayQueue)
                 .to(delayExchange)
                 .with(QueueEnum.QUEUE_ORDER_DELAY.getRouteKey());
+    }
+
+    @Bean
+    Binding seckillBinding(DirectExchange seckillExchange,Queue seckillQueue){
+        return BindingBuilder
+                .bind(seckillQueue)
+                .to(seckillExchange)
+                .with(QueueEnum.QUEUE_SECKILL.getRouteKey());
     }
 }

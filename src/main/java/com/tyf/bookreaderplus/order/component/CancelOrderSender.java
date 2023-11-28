@@ -24,7 +24,7 @@ public class CancelOrderSender {
             message.getMessageProperties().setExpiration(String.valueOf(delayTimes));
             return message;
         });
-        log.debug("orderId:{}",orderId);
+        log.debug("orderNum:{}",orderId);
     }
 
 }

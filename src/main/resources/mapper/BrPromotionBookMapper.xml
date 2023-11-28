@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tyf.bookreaderplus.promotion.dao.BrPromotionBookMapper">
+
+    <resultMap id="sessionBookMap" type="com.tyf.bookreaderplus.promotion.dto.SessionBookDto">
+        <result column="session_id" property="sessionId"/>
+        <result column="book_id" property="bookId"/>
+        <result column="book_img" property="bookImg"/>
+        <result column="book_price" property="bookPrice"/>
+        <result column="book_name" property="bookName"/>
+        <result column="stock" property="stock" />
+    </resultMap>
+    <select id="selectBookListBySessionId" resultMap="sessionBookMap">
+        select bb.id book_id,bb.book_name book_name,bb.book_img book_img,
+               bpb.promotion_session_id session_id,bpb.promotion_price book_price,bpb.stock stock from br_book bb
+               left join br_promotion_book bpb on bb.id = bpb.book_id
+               where bpb.promotion_session_id = #{sessionId}
+    </select>
+</mapper>

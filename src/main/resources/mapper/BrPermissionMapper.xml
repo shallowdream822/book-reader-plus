@@ -3,7 +3,7 @@
 <mapper namespace="com.tyf.bookreaderplus.auth.dao.BrPermissionMapper">
 
     <select id="selectPermissionsByUserId" resultType="java.lang.String">
-        select permission_name from br_permission bp where id in (
+        select permission_url from br_permission bp where id in (
             select a.id from br_role_permission a
                 join br_role b on a.role_id = b.id
                 join br_user_role c on c.role_id = b.id

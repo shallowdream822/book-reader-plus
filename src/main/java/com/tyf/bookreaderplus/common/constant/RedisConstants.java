@@ -71,7 +71,7 @@ public class RedisConstants {
     /**
      * 登录相关
      */
-    public static final long LOGIN_USER_TTL = 30000L ;
+    public static final long LOGIN_USER_TTL = 300000L ;
 
     /**
      * 订单相关

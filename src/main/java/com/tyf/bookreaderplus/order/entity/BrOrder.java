@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 public class BrOrder implements Serializable{
     private static final long serialVersionUID= -67896926990408328L;
 
-    @TableId(value = "id" , type = IdType.ASSIGN_ID)
+    @TableId(value = "id" , type = IdType.AUTO)
     private Long id;
 
     /**订单编号*/
@@ -61,5 +61,9 @@ public class BrOrder implements Serializable{
     @TableLogic
     @TableField(value = "deleted")
     private Integer deleted;
+
+    /**订单类型 0-普通订单 1-秒杀订单*/
+    @TableField(value = "is_seckill")
+    private Integer isSeckill;
 }
 

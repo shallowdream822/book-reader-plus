@@ -6,7 +6,7 @@ spring:
     password: 123456
   redis:
     host: 43.138.106.8
-    #    password: 123456
+    password: 123456
     port: 6379
     lettuce:
       pool:
@@ -50,4 +50,4 @@ secure:
   ignored:
     urls:
       - /login
-      - /*
+      - /register

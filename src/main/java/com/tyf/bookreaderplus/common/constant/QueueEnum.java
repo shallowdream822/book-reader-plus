@@ -13,6 +13,8 @@ public enum QueueEnum {
      * 消息通知队列
      */
     QUEUE_ORDER_DELAY("relay_exchange", "book_reader.order.delay", "book_reader.order.delay"),
+
+    QUEUE_SECKILL("seckill_exchange", "book_reader.seckill", "book_reader.seckill"),
     /**
      * 消息通知ttl队列
      */

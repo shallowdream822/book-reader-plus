@@ -17,7 +17,7 @@ public interface OrderService {
 
     void createOrder(OrderVo orderVo);
 
-    void payOrder(Long orderId);
+    void payOrder(Long orderNum);
 
     Result<OrderDto> selectOrderDetails(Long orderId);
 

@@ -27,6 +27,7 @@ import com.tyf.bookreaderplus.order.entity.BrOrderDetails;
 import com.tyf.bookreaderplus.order.service.OrderService;
 import com.tyf.bookreaderplus.order.vo.OrderDetailsVo;
 import com.tyf.bookreaderplus.order.vo.OrderVo;
+import com.tyf.bookreaderplus.promotion.constant.PromotionInitConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
@@ -88,13 +89,14 @@ public class OrderServiceImpl implements OrderService {
         }
         order.setOrderPrice(orderPrice);
         order.setStatus(0);
+        order.setIsSeckill(orderVo.getIsSeckill());
         orderMapper.insert(order);
-        senderOrderToDelayQueue(order.getId());
-        redisUtil.hSet(RedisConstants.ORDER_KEY,String.valueOf(order.getId()),order,RedisConstants.COMMON_CACHE_TIME);
+        senderOrderToDelayQueue(order.getOrderNum());
+        redisUtil.hSet(RedisConstants.ORDER_KEY,String.valueOf(order.getOrderNum()),order,RedisConstants.COMMON_CACHE_TIME);
     }
-    private void senderOrderToDelayQueue(Long orderId) {
+    private void senderOrderToDelayQueue(Long orderNum) {
         //发送延迟消息
-        cancelOrderSender.sendMessage(orderId, CommonConstants.QUEUE_DEAD_TTL_TEST);
+        cancelOrderSender.sendMessage(orderNum, CommonConstants.QUEUE_DEAD_TTL);
     }
 
     @Override
@@ -194,14 +196,18 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional
-    public void cancelOrder(Long orderId) {
-        redisUtil.hDel(RedisConstants.ORDER_KEY,String.valueOf(orderId));
-        BrOrder order = orderMapper.selectById(orderId);
+    public void cancelOrder(Long orderNum) {
+        redisUtil.hDel(RedisConstants.ORDER_KEY,String.valueOf(orderNum));
+        BrOrder order = orderMapper.selectOne(new LambdaQueryWrapper<BrOrder>().eq(BrOrder::getOrderNum, orderNum));
         if (Objects.isNull(order)||order.getDeleted() == 1){
             throw new BrException("订单已不存在");
         }
         order.setStatus(3);
-        orderMapper.updateById(order);
+        orderMapper.update(order,new LambdaQueryWrapper<BrOrder>().eq(BrOrder::getOrderNum, orderNum));
+        if(order.getIsSeckill().equals(PromotionInitConstants.SECKILL_ORDER_STATUS)){
+            //秒杀订单取消，库存+1
+
+        }
         redisUtil.hSet(RedisConstants.ORDER_KEY,String.valueOf(order.getId()),order,RedisConstants.COMMON_CACHE_TIME);
     }
 

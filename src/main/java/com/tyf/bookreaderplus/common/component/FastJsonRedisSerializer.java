@@ -27,7 +27,7 @@ public class FastJsonRedisSerializer<T> implements RedisSerializer<T> {
     }
 
     public byte[] serialize(T t) throws SerializationException {
-        return t == null ? new byte[0] : JSON.toJSONString(t, new SerializerFeature[]{SerializerFeature.WriteClassName}).getBytes(DEFAULT_CHARSET);
+        return t == null ? new byte[0] : JSON.toJSONString(t, SerializerFeature.WriteClassName).getBytes(DEFAULT_CHARSET);
     }
 
     public T deserialize(byte[] bytes) throws SerializationException {

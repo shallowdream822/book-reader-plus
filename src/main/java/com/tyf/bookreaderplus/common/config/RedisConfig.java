@@ -46,7 +46,7 @@ public class RedisConfig {
     public RedissonClient redissonClient(){
         //配置类
         Config config = new Config();
-        config.useSingleServer().setAddress("redis://43.138.106.8:6379");
+        config.useSingleServer().setAddress("redis://43.138.106.8:6379").setPassword("123456");
         return Redisson.create(config);
     }
 }

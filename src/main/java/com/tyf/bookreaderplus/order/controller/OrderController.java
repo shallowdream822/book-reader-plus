@@ -41,8 +41,8 @@ public class OrderController {
 
     @ApiOperation(value = "支付订单")
     @PostMapping("/pay")
-    public Result payOrder(@RequestParam Long orderId){
-        orderService.payOrder(orderId);
+    public Result payOrder(@RequestParam Long orderNum){
+        orderService.payOrder(orderNum);
         return Result.ok();
     }
 
