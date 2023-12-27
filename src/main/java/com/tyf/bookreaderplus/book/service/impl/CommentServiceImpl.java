@@ -144,8 +144,8 @@ public class CommentServiceImpl implements CommentService {
                 addStar(commentId,userId);
                 commentStarDto.setMessage("点赞成功");
             }
-            Integer stars = Integer.valueOf(redisUtil.hGet(RedisConstants.COMMENT_STAR_NUM_CACHE_KEY, String.valueOf(commentId)).toString());
-            commentStarDto.setCommentStars(stars.longValue());
+            Long stars = Long.valueOf(redisUtil.hGet(RedisConstants.COMMENT_STAR_NUM_CACHE_KEY, String.valueOf(commentId)).toString());
+            commentStarDto.setCommentStars(stars);
         } finally {
             lock.unlock();
         }

@@ -25,7 +25,7 @@ public class CreateOrderReceiver {
     @Autowired
     private OrderService orderService;
 
-    @RabbitListener(queues = "book_reader.order.seckill")
+    @RabbitListener(queues = "book_reader.seckill")
     public void handleCreateSeckillOrder(SeckillVo seckillVo){
         log.debug("秒杀订单信息是{}",seckillVo);
         OrderDetailsVo orderDetailsVo = OrderDetailsVo.builder().bookId(seckillVo.getBookId())

@@ -3,18 +3,24 @@ package com.tyf.bookreaderplus.auth.service.impl;
 import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
+import com.tyf.bookreaderplus.auth.constants.AuthConstant;
+import com.tyf.bookreaderplus.auth.dao.BrBookUserMapper;
 import com.tyf.bookreaderplus.auth.dao.BrUserMapper;
+import com.tyf.bookreaderplus.auth.dao.BrUserRoleMapper;
 import com.tyf.bookreaderplus.auth.dto.UserDto;
+import com.tyf.bookreaderplus.auth.entity.BrBookUser;
 import com.tyf.bookreaderplus.auth.entity.BrUser;
 import com.tyf.bookreaderplus.auth.service.UserAuthService;
 import com.tyf.bookreaderplus.auth.vo.LoginVo;
 import com.tyf.bookreaderplus.auth.vo.UserVo;
+import com.tyf.bookreaderplus.book.dao.BrUserStarBookMapper;
 import com.tyf.bookreaderplus.common.component.LoginUser;
 import com.tyf.bookreaderplus.common.component.Result;
 import com.tyf.bookreaderplus.common.constant.RedisConstants;
 import com.tyf.bookreaderplus.common.exception.BrException;
 import com.tyf.bookreaderplus.common.utils.JwtUtil;
 import com.tyf.bookreaderplus.common.utils.RedisUtil;
+import com.tyf.bookreaderplus.auth.entity.BrUserRole;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,6 +30,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
@@ -44,6 +51,12 @@ public class UserAuthServiceImpl implements UserAuthService {
     private BrUserMapper userMapper;
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private BrUserRoleMapper userRoleMapper;
+
+    @Autowired
+    private BrBookUserMapper bookUserMapper;
 
     public UserAuthServiceImpl() {
     }
@@ -74,6 +87,7 @@ public class UserAuthServiceImpl implements UserAuthService {
         return Result.ok("退出成功");
     }
 
+    @Transactional
     public Result register(UserVo userVo) {
         List<BrUser> userList = this.userMapper.selectList(new LambdaQueryWrapper<BrUser>().eq(BrUser::getUserName, userVo.getUserName())
                 .or()
@@ -86,7 +100,9 @@ public class UserAuthServiceImpl implements UserAuthService {
             user.setId(IdWorker.getId());
             user.setStatus(0);
             user.setAccountBalance(0.0);
-            this.userMapper.insert(user);
+            userMapper.insert(user);
+            userRoleMapper.insert(BrUserRole.builder().userId(user.getId()).roleId(AuthConstant.COMMON_USER).build());
+            bookUserMapper.insert(BrBookUser.builder().bookId(AuthConstant.TEMPLATE_BOOK).userId(user.getId()).build());
             return Result.ok();
         }
     }

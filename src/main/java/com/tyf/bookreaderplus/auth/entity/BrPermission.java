@@ -38,9 +38,9 @@ public class BrPermission implements Serializable{
     @TableField(value = "request_method")
     private String requestMethod;
 
-    /**是否禁用 0-否；1-是*/
-    @TableField(value = "is_disable")
-    private Integer isDisable;
+//    /**是否禁用 0-否；1-是*/
+//    @TableField(value = "is_disable")
+//    private Integer isDisable;
 
     /**创建时间*/
 

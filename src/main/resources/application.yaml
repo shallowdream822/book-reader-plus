@@ -3,7 +3,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://43.138.106.8:3306/book_reader?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8
     username: root
-    password: 123456
+    password: tyf980822
   redis:
     host: 43.138.106.8
     password: 123456
@@ -33,6 +33,7 @@ spring:
     username: root
     password: 123456
     publisher-confirms: true #如果对异步消息需要回调必须设置为true
+    virtual-host: novel
 server:
   port: 8080
 logging:

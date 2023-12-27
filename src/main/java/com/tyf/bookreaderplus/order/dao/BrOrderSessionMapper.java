@@ -2,7 +2,7 @@ package com.tyf.bookreaderplus.order.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.tyf.bookreaderplus.order.entity.BrOrderSession;
-import org.mapstruct.Mapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
 * @author 10128
@@ -14,4 +14,5 @@ import org.mapstruct.Mapper;
 public interface BrOrderSessionMapper extends BaseMapper<BrOrderSession> {
 
 
+    Long selectSessionIdByOrderNum(Long orderNum);
 }

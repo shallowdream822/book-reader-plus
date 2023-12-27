@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 import com.tyf.bookreaderplus.order.entity.BrOrder;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * (BrOrder)表数据库访问层
@@ -12,5 +13,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @since 2023-05-03 17:36:38
  */
 @Mapper
-public interface BrOrderMapper extends BaseMapper<BrOrder> {}
+public interface BrOrderMapper extends BaseMapper<BrOrder> {
+    BrOrder selectOrderByOrderNum(@Param("orderNum") Long orderNum);
+}
 

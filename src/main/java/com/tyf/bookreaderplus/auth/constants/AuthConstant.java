@@ -9,4 +9,8 @@ package com.tyf.bookreaderplus.auth.constants;
 public class AuthConstant {
 
     public static final int NOT_NEED_AUTHENTICATION = 0;
+
+    public static final long COMMON_USER = 1L;
+
+    public static final long TEMPLATE_BOOK = 1L;
 }

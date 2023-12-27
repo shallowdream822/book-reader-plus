@@ -1,6 +1,7 @@
 package com.tyf.bookreaderplus.common.config;
 
 
+import com.tyf.bookreaderplus.common.constant.CommonConstants;
 import com.tyf.bookreaderplus.common.constant.QueueEnum;
 import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
@@ -59,7 +60,7 @@ public class RabbitMqConfig {
     @Bean
     public Queue delayQueue(){
         return QueueBuilder.durable(QueueEnum.QUEUE_ORDER_DELAY.getName())
-                .withArgument("x-message-ttl", 60000)
+                .withArgument("x-message-ttl", CommonConstants.QUEUE_DEAD_TTL)//过期时间
                 .withArgument("x-dead-letter-exchange",QueueEnum.QUEUE_ORDER_DEAD.getExchange())//转发的交换机
                 .withArgument("x-dead-letter-routing-key",QueueEnum.QUEUE_ORDER_DEAD.getRouteKey())//转发的路由key
                 .build();

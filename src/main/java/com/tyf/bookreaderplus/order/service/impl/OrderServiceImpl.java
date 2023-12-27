@@ -20,6 +20,7 @@ import com.tyf.bookreaderplus.common.utils.UserUtils;
 import com.tyf.bookreaderplus.order.component.CancelOrderSender;
 import com.tyf.bookreaderplus.order.dao.BrOrderDetailsMapper;
 import com.tyf.bookreaderplus.order.dao.BrOrderMapper;
+import com.tyf.bookreaderplus.order.dao.BrOrderSessionMapper;
 import com.tyf.bookreaderplus.order.dto.OrderDetailsDto;
 import com.tyf.bookreaderplus.order.dto.OrderDto;
 import com.tyf.bookreaderplus.order.entity.BrOrder;
@@ -71,6 +72,9 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private CancelOrderSender cancelOrderSender;
 
+    @Autowired
+    private BrOrderSessionMapper orderSessionMapper;
+
     @Override
     public void createOrder(OrderVo orderVo) {
         BrOrder order = new BrOrder();
@@ -85,6 +89,9 @@ public class OrderServiceImpl implements OrderService {
             orderPrice+=detail.getBookPrice();
             BrOrderDetails detailsToDb = BeanUtil.toBean(detail, BrOrderDetails.class);
             detailsToDb.setOrderNum(order.getOrderNum());
+            detailsToDb.setBookId(detail.getBookId());
+            detailsToDb.setBookName(detail.getBookName());
+            detailsToDb.setBookPrice(detail.getBookPrice());
             orderDetailsMapper.insert(detailsToDb);
         }
         order.setOrderPrice(orderPrice);
@@ -206,6 +213,7 @@ public class OrderServiceImpl implements OrderService {
         orderMapper.update(order,new LambdaQueryWrapper<BrOrder>().eq(BrOrder::getOrderNum, orderNum));
         if(order.getIsSeckill().equals(PromotionInitConstants.SECKILL_ORDER_STATUS)){
             //秒杀订单取消，库存+1
+            Long sessionId = orderSessionMapper.selectSessionIdByOrderNum(orderNum);
 
         }
         redisUtil.hSet(RedisConstants.ORDER_KEY,String.valueOf(order.getId()),order,RedisConstants.COMMON_CACHE_TIME);
